@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Book List</h1>
+<ul>
+    {% for book in books %}
+    <li>
+        <a href="{{ url_for('detail', id=book.id) }}">{{ book.title }}</a> by {{ book.author }}
+        <form method="POST" action="{{ url_for('delete', id=book.id) }}" style="display:inline;">
+            <button type="submit" onclick="return confirm('Delete this book?')">❌</button>
+        </form>
+        <a href="{{ url_for('update', id=book.id) }}">✏️</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
