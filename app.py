@@ -37,3 +37,26 @@ def create():
         flash("Book added successfully!", "success")
         return redirect(url_for("index"))
     return render_template("create.html", form=form)
+
+
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    book = Book.query.get_or_404(id)
+    form = BookForm(obj=book)
+    if form.validate_on_submit():
+        book.title = form.title.data
+        book.author = form.author.data
+        book.description = form.description.data
+        db.session.commit()
+        flash("Book updated successfully!", "success")
+        return redirect(url_for("index"))
+    return render_template("update.html", form=form, book=book)
+
+
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete(id):
+    book = Book.query.get_or_404(id)
+    db.session.delete(book)
+    db.session.commit()
+    flash("Book deleted successfully!", "info")
+    return redirect(url_for("index"))
