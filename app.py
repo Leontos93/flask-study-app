@@ -21,3 +21,19 @@ def index():
 def detail(id):
     book = Book.query.get_or_404(id)
     return render_template("detail.html", book=book)
+
+
+@app.route("/create", methods=["GET", "POST"])
+def create():
+    form = BookForm()
+    if form.validate_on_submit():
+        book = Book(
+            title=form.title.data,
+            author=form.author.data,
+            description=form.description.data,
+        )
+        db.session.add(book)
+        db.session.commit()
+        flash("Book added successfully!", "success")
+        return redirect(url_for("index"))
+    return render_template("create.html", form=form)
