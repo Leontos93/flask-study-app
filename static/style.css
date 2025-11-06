@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f8f8f8;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: #c3f7c8;
+}
+
+.flash.info {
+    background-color: #cbe9ff;
+}
