@@ -60,3 +60,7 @@ def delete(id):
     db.session.commit()
     flash("Book deleted successfully!", "info")
     return redirect(url_for("index"))
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
